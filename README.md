@@ -24,7 +24,7 @@
 * It is preferable for a SAS label to be assigned to the continuous predictor
 
 ## USAGE
-~~~
+~~~sas
 %cumRoc3(_yOut,_xPred,_vsLbl,_cutFmt,_dsn,
 _dir00,
 _dirOut,
@@ -32,7 +32,7 @@ _dirPng,
 _dateOut,_libNm=DEMO,_propOdds=PO,_yOrd=A,_macMode=1,_outCntnts=YES) ;
 ~~~
 * Example Call 1 Cork Quality
-~~~
+~~~sas
 %cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
 %STR(C:/rootDir/project),
 %STR(Output/Cork),
@@ -40,7 +40,7 @@ _dateOut,_libNm=DEMO,_propOdds=PO,_yOrd=A,_macMode=1,_outCntnts=YES) ;
 2019_DEMO,_macMode=1) ;
 ~~~
 * Example Call 2 NHANES NNAL Tobacco Smoke Exposure
-~~~
+~~~sas
 %cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
 %STR(C:/rootDir/project),
 %STR(Output/NNAL),
