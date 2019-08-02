@@ -5,7 +5,7 @@
     Copyright   CC-BY-4.0 Creative Commons Attribution 4.0 International Public License
     ##########################################################################
     Name:       %cumRoc3
-    Type:       Main SAS macro wrapping suporting macros
+    Type:       Main, user-called SAS macro wrapping supporting macros
     Purpose:    Implements cumulative ROC curve analysis for three-level (ternary) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis.
                 Analysis includes identification of cutpoints that discriminate outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.
                     Three modes
@@ -17,6 +17,7 @@
     ##########################################################################
 
 PREREQUISITES
+    * SAS 9.4 or later
     * Three-level (ternary) ordinal outcome with levels encoded as: 0, 1, 2
         * Designated reference level
             * DEFAULT:      encoded as: 2 (Macro parameter _yOrd=A)
