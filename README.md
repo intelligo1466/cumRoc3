@@ -1,0 +1,3 @@
+# %cumRoc3 -- SAS macro for cumulative ROC curve analysis of three-level (ternary) ordinal outcomes
+
+%cumRoc3 is a SAS macro that implements cumulative ROC curve analysis for three-level (ternary) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis. Analysis includes identification of cutpoints that discriminate outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.

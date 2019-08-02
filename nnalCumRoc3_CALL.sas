@@ -29,7 +29,7 @@ ATTRIBUTION
 x 'cd C:/rootDir/project' ;
 
 /* DEMO: Default name for input SAS library in %cumRoc3 */
-LIBNAME DEMO "./data/cork" ;
+LIBNAME DEMO "./data/nnal" ;
 
 PROC FORMAT ;
     Value nhCyc
