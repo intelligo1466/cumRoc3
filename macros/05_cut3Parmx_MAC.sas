@@ -205,14 +205,10 @@ DISCLAIMERS
                                 Format= 10.6
                     mcc         Label=  "Matthews Corr"
                                 Format= 10.6
-                    difSnSp     Label= "ABS[Sn-Sp]"
-                                Format= 10.6
             ;
         /* critMax is placeholder with intentionally missing values
            critPoint merged by critPoint created in parmx95 */
-            CALL MISSING(difSnSp,critMax,criterion,critPoint) ;
-            IF NMISS(tpr,spec)= 0 THEN difSnSp= ABS(tpr - spec) ;
-
+            CALL MISSING(critMax,criterion,critPoint) ;
             criterion= LEFT(STRIP(PROPCASE("&_critLbl"))) ;
             critPoint= LEFT(STRIP("&_critLbl :: &_J0")) ;
         RUN ;
@@ -226,7 +222,9 @@ DISCLAIMERS
         DELETE  _cutParmx ;
         APPEND  BASE= _cutParmx DATA= _1CUT_parmx_0  FORCE ;
         APPEND  BASE= _cutParmx DATA= _1CUT_parmx_1  FORCE ;
-        DELETE _ONES_: _0CUT_: _1CUT_: ;
+        %IF %upCase(&_debug0)= NO %THEN %DO ;
+            DELETE _ONES_: _0CUT_: _1CUT_: ;
+        %END ;
     QUIT ;
     PROC SORT   DATA= _cutParmx ;
         BY critPoint ;

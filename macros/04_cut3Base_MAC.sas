@@ -46,16 +46,19 @@ DISCLAIMERS
 /* ========================================================================== */
 /* ==== Compute Youden Index, Total Accuracy, and Matthews Corr Coeff */
 /* ========================================================================== */
-        DATA _CRITERIA_&_J ;
-            SET &_LIBNM..ROC_&_fileSfx (
-                KEEP= &_xPred
-                    TP_&_j TN_&_j FP_&_j FN_&_j
-                    tpr_&_J fpr_&_J spec_&_J
-                    ppv_&_J npv_&_J
-                    J_&_J acc_&_J mcc_&_J
-            ) ;
+        /* Delete duplicate observations of _xPred */
+        PROC SORT   DATA=   &_LIBNM..ROC_&_fileSfx (
+                        KEEP= &_xPred
+                            TP_&_j TN_&_j FP_&_j FN_&_j
+                            tpr_&_J fpr_&_J spec_&_J
+                            ppv_&_J npv_&_J
+                            J_&_J acc_&_J mcc_&_J
+                    )
+                    OUT=    _CRITERIA_&_J
+                NODUPKEY
+            ;
+            BY &_xPred ;
         RUN ;
-
     /* ========================================================================== */
     /* =====    B   E   G   I   N   _K::Loop over J, ACC, MCC: Find optimal cutpoint */
         %DO _K = 1 %TO 3 ;
@@ -72,7 +75,7 @@ DISCLAIMERS
                 %LET _critLbl = %STR(Matthews Correlation) ;
             %END ;
 /* ========================================================================== */
-/* ==== Empirically and nonparametrically find the optimal cutpoint at MAX. Save all ties. */
+/* ==== Empirically and nonparametrically identify the optimal cutpoint at MAX. */
 /* ========================================================================== */
             PROC SQL noPrint ;
                 CREATE TABLE _0CUT_&_CRIT._&_J
@@ -86,34 +89,11 @@ DISCLAIMERS
                 ;
             QUIT ;
 
-        /* Compute absolute difference in sensitivity and specificty for resolution of possible ties */
-            DATA _1CUT_&_CRIT._&_J ;
-                SET _0CUT_&_CRIT._&_J ;
-                ATTRIB  difSnSp     Label= "ABS[Sn-Sp]"
-                                    Format= 10.6
-                ;
-                CALL MISSING(difSnSp) ;
-                IF NMISS(tpr_&_J,spec_&_J)= 0 THEN difSnSp= ABS(tpr_&_J - spec_&_J) ;
-            RUN ;
-        /* If ties, ensure smallest absolute difference is first */
-            PROC SORT DATA= _1CUT_&_CRIT._&_J ;
-                BY &_CRIT._&_J difSnSp ;
-            RUN ;
-
-        /* Eliminate possible ties before appending with other criteria */
-            PROC SORT   DATA=   _1CUT_&_CRIT._&_J
-                        OUT=    _2CUT_&_CRIT._&_J
-                PRESORTED
-                NODUPKEY
-            ;
-                BY &_CRIT._&_J ;
-            RUN ;
-
         /* Prepare for appending with other criteria::cutpoints
            ONE-TO-ONE MERGE (side-by-side) */
-            DATA _3CUT_&_CRIT._&_J ;
-                MERGE   _2CUT_&_CRIT._&_J (
-                            KEEP= &_CRIT._&_J &_xPred tpr_&_J fpr_&_J spec_&_J ppv_&_J npv_&_J difSnSp
+            DATA _1CUT_&_CRIT._&_J ;
+                MERGE   _0CUT_&_CRIT._&_J (
+                            KEEP= &_CRIT._&_J &_xPred tpr_&_J fpr_&_J spec_&_J ppv_&_J npv_&_J
                             RENAME=(&_CRIT._&_J = critMax
                                     &_xPred     = &_xPred.Cut
                                     tpr_&_J     = tpr
@@ -173,18 +153,20 @@ DISCLAIMERS
 /* ========================================================================== */
     PROC DATASETS LIBRARY= WORK NOLIST ;
         DELETE  CUTBASE_&_fileSfx ;
-        APPEND  BASE= CUTBASE_&_fileSfx DATA= _3CUT_j_0    FORCE ;
-        APPEND  BASE= CUTBASE_&_fileSfx DATA= _3CUT_j_1    FORCE ;
-        APPEND  BASE= CUTBASE_&_fileSfx DATA= _3CUT_acc_0  FORCE ;
-        APPEND  BASE= CUTBASE_&_fileSfx DATA= _3CUT_acc_1  FORCE ;
-        APPEND  BASE= CUTBASE_&_fileSfx DATA= _3CUT_mcc_0  FORCE ;
-        APPEND  BASE= CUTBASE_&_fileSfx DATA= _3CUT_mcc_1  FORCE ;
+        APPEND  BASE= CUTBASE_&_fileSfx DATA= _1CUT_j_0    FORCE ;
+        APPEND  BASE= CUTBASE_&_fileSfx DATA= _1CUT_j_1    FORCE ;
+        APPEND  BASE= CUTBASE_&_fileSfx DATA= _1CUT_acc_0  FORCE ;
+        APPEND  BASE= CUTBASE_&_fileSfx DATA= _1CUT_acc_1  FORCE ;
+        APPEND  BASE= CUTBASE_&_fileSfx DATA= _1CUT_mcc_0  FORCE ;
+        APPEND  BASE= CUTBASE_&_fileSfx DATA= _1CUT_mcc_1  FORCE ;
         %IF &_LIBNM NE WORK %THEN %DO ;
             COPY OUT= &_LIBNM ;
                 SELECT  CUTBASE_&_fileSfx ;
             RUN ;
         %END ;
-        DELETE _CRITERIA_: _0CUT_: _1CUT_: _2CUT_: _3CUT_: ;
+        %IF %upCase(&_debug0)= NO %THEN %DO ;
+            DELETE _CRITERIA_: _0CUT_: _1CUT_: ;
+        %END ;
     RUN ; QUIT ;
     PROC SORT   DATA= &_LIBNM..CUTBASE_&_fileSfx (LABEL= "Optimal ROC curve-based cutpoints and cumulative ROC curve AUCs") ;
         BY critPoint ;

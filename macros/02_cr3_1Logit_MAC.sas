@@ -212,10 +212,12 @@ DISCLAIMERS
         BY Parameter ;
     RUN ;
 
-    PROC DATASETS LIBRARY= WORK NOLIST ;
-        DELETE _NObs _parmEst _parmCl _oddsW _oddsPl
-               _0parm _parmSe _parmLo _parmHi
-%IF %UPCASE(&_propOdds)= PO %THEN _testPo ;
-        ;
-    RUN ; QUIT ;
+    %IF %upCase(&_debug0)= NO %THEN %DO ;
+        PROC DATASETS LIBRARY= WORK NOLIST ;
+            DELETE _NObs _parmEst _parmCl _oddsW _oddsPl
+                   _0parm _parmSe _parmLo _parmHi
+        %IF %UPCASE(&_propOdds)= PO %THEN _testPo ;
+            ;
+        RUN ; QUIT ;
+    %END ;
 %MEND cr3_1Logit ;

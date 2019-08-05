@@ -212,7 +212,9 @@ DISCLAIMERS
         ;
     RUN ;
 
-    PROC DATASETS LIBRARY= WORK NOLIST ;
-        DELETE _PRED_: _0ROC_: _1ROC_: _2ROC_: _0AUC_: ;
-    RUN ; QUIT ;
+    %IF %upCase(&_debug0)= NO %THEN %DO ;
+        PROC DATASETS LIBRARY= WORK NOLIST ;
+            DELETE _PRED_: _0ROC_: _1ROC_: _2ROC_: _0AUC_: ;
+        RUN ; QUIT ;
+    %END ;
 %MEND cr3_2ROC ;

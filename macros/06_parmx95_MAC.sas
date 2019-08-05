@@ -256,7 +256,10 @@ DISCLAIMERS
         ;
         BY critPoint ;
     RUN ;
-    PROC DATASETS LIBRARY= WORK NOLIST ;
-        DELETE _0parmx95 ;
-    RUN ; QUIT ;
+
+    %IF %upCase(&_debug0)= NO %THEN %DO ;
+        PROC DATASETS LIBRARY= WORK NOLIST ;
+            DELETE _0parmx95 ;
+        RUN ; QUIT ;
+    %END ;
 %MEND parmx95 ;

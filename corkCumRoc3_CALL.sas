@@ -38,38 +38,43 @@ PROC FORMAT ;
         2   =   "Superior"
 ;
 /*  Categories discriminated by cutpoints.
-    REQUIRED FORMAT NAME: vsG */
+    vsG: REQUIRED FORMAT NAME */
     VALUE vsG
         0   =   "Poor vs. Normal, Superior"
         1   =   "Poor, Normal vs. Superior"
 ;
 RUN ;
 
-/* Load cumulative ROC curve macro %cumRoc3 and supporting macros */
+/* Compile cumulative ROC curve macro %cumRoc3 and if &_macComp=YES then also compile supporting macros */
 %INCLUDE "./macros/cumRoc3_MAIN_MAC.sas" ;
-    %INCLUDE "./macros/words_MAC.sas"          ;
-    %INCLUDE "./macros/00_preCheck_MAC.sas"    ;
-    %INCLUDE "./macros/01_dataPre_MAC.sas"     ;
-    %INCLUDE "./macros/02_cr3_1Logit_MAC.sas"  ;
-    %INCLUDE "./macros/03_cr3_2ROC_MAC.sas"    ;
-    %INCLUDE "./macros/04_cut3Base_MAC.sas"    ;
-    %INCLUDE "./macros/05_cut3Parmx_MAC.sas"   ;
-    %INCLUDE "./macros/06_parmx95_MAC.sas"     ;
-    %INCLUDE "./macros/07_cr3Results_MAC.sas"  ;
 
 /* PROPORTIONAL ODDS: Ascending outcome modeled */
 /* Compare cork quality categories */
 /* Defect area [px] */
-ODS HTML Close ;
-ODS HTML ;
+ODS HTML Close ; ODS HTML ;
     /* Macro debugging: ENABLED */
     OPTIONS MLOGIC MPRINT SYMBOLGEN ;
     %cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
         %STR(C:/rootDir/project),
         %STR(Output/Cork),
         %STR(Images/Cork),
-        2019_DEMO,_macMode=1) ;
+        2019_DEMO,_macMode=1,_macComp=YES,
+        _outCntnts=YES,_outRtf=NO) ;
     /* Macro debugging: DISABLED */
     OPTIONS noMLOGIC noMPRINT noSYMBOLGEN ;
-ODS HTML Close ;
-ODS HTML ;
+ODS HTML Close ; ODS HTML ;
+
+/* A more routine (and less verbose) call to %cumRoc3
+    * No macro debugging to LOG
+    * Supporting macros not recompiled (prerequisite: macros compiled at least once before during current SAS session)
+    * CONTENTS of permanent output datasets not appended to results
+    * Tabulated results output to RTF
+*/
+ODS HTML Close ; ODS HTML ;
+    %cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
+        %STR(C:/rootDir/project),
+        %STR(Output/Cork),
+        %STR(Images/Cork),
+        2019_DEMO,_macComp=NO,
+        _outCntnts=NO,_outRtf=YES) ;
+ODS HTML Close ; ODS HTML ;

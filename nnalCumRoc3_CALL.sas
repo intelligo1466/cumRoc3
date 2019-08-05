@@ -22,7 +22,7 @@ DISCLAIMERS
 
 ATTRIBUTION
 1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
-2. SUGGESTION ON HOW TO CITE %cumRoc3
+2. SUGGESTED CITATION FOR %cumRoc3
     ##########################################################################
 */
 /* Change SAS working directory to enable relative path referencing. */
@@ -43,38 +43,43 @@ PROC FORMAT ;
         2  = "Smoker, Exclusive"
     ;
 /*  Categories discriminated by cutpoints.
-    REQUIRED FORMAT NAME: vsG */
+    vsG: REQUIRED FORMAT NAME */
     Value vsG
         0   =   "Non-Exposed vs. ETS, Smoker"
         1   =   "Non-Exposed, ETS vs. Smoker"
 ;
 RUN ;
 
-/* Load cumulative ROC curve macro %cumRoc3 and supporting macros */
+/* Compile cumulative ROC curve macro %cumRoc3 and if &_macComp=YES then also compile supporting macros */
 %INCLUDE "./macros/cumRoc3_MAIN_MAC.sas" ;
-    %INCLUDE "./macros/words_MAC.sas"          ;
-    %INCLUDE "./macros/00_preCheck_MAC.sas"    ;
-    %INCLUDE "./macros/01_dataPre_MAC.sas"     ;
-    %INCLUDE "./macros/02_cr3_1Logit_MAC.sas"  ;
-    %INCLUDE "./macros/03_cr3_2ROC_MAC.sas"    ;
-    %INCLUDE "./macros/04_cut3Base_MAC.sas"    ;
-    %INCLUDE "./macros/05_cut3Parmx_MAC.sas"   ;
-    %INCLUDE "./macros/06_parmx95_MAC.sas"     ;
-    %INCLUDE "./macros/07_cr3Results_MAC.sas"  ;
 
 /* NON-PROPORTIONAL ODDS: Ascending outcome modeled */
 /* Compare tobacco smoke exposure categories */
 /* URXNALln:    Ln NNAL, urine [ng/ml] */
-ODS HTML Close ;
-ODS HTML ;
+ODS HTML Close ; ODS HTML ;
     /* Macro debugging: ENABLED */
     OPTIONS MLOGIC MPRINT SYMBOLGEN ;
     %cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
         %STR(C:/rootDir/project),
         %STR(Output/NNAL),
         %STR(Images/NNAL),
-        2019_DEMO,_propOdds=NPO,_macMode=1) ;
+        2019_DEMO,_propOdds=NPO,_macMode=1,_macComp=YES,
+        _outCntnts=YES,_outRtf=NO) ;
     /* Macro debugging: DISABLED */
     OPTIONS noMLOGIC noMPRINT noSYMBOLGEN ;
-ODS HTML Close ;
-ODS HTML ;
+ODS HTML Close ; ODS HTML ;
+
+/* A more routine (and less verbose) call to %cumRoc3
+    * No macro debugging to LOG
+    * Supporting macros not recompiled (prerequisite: macros compiled at least once before during current SAS session)
+    * CONTENTS of permanent output datasets not appended to results
+    * Tabulated results output to RTF
+*/
+ODS HTML Close ; ODS HTML ;
+    %cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
+        %STR(C:/rootDir/project),
+        %STR(Output/NNAL),
+        %STR(Images/NNAL),
+        2019_DEMO,_propOdds=NPO,_macComp=NO,
+        _outCntnts=NO,_outRtf=YES) ;
+ODS HTML Close ; ODS HTML ;

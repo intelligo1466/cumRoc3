@@ -16,9 +16,9 @@
 
 OUTPUT
     MACRO VARIABLE, GLOBAL: Indicator that ternary ordinal dependent variable is compatible
-        _yOK=FAIL   DEFAULT: FAIL
-                        FAIL:  incompatible
-                        PASS:  compatible
+        _yOK=FAIL :: DEFAULT
+            FAIL:  incompatible
+            PASS:  compatible
 
 DISCLAIMERS
 1. DISCLAIMER OF WARRANTY. Under the terms of the Apache License 2.0 License, "Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "as is" basis, without warranties or conditions of any kind, either express or implied, including, without limitation, any warranties or conditions of title, non-infringement, merchantability, or fitness for a particular purpose. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License."
@@ -96,5 +96,11 @@ DISCLAIMERS
         %IF &_yFail_0 NE %THEN %PUT %STR(    ) &_yFail_0 ;
         %IF &_yFail_1 NE %THEN %PUT %STR(    ) &_yFail_1 ;
         %IF &_yFail_2 NE %THEN %PUT %STR(    ) &_yFail_2 ;
+    %END ;
+
+    %IF %upCase(&_debug0)= NO %THEN %DO ;
+        PROC DATASETS LIBRARY= WORK NOLIST ;
+            DELETE _yLevels _yCheck ;
+        RUN ; QUIT ;
     %END ;
 %MEND preCheck ;
