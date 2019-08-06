@@ -42,7 +42,7 @@ FOR PRODUCTION
     LIBNAME demo "~/data/cork" ;
 ==========================================================================
 */
-LIBNAME demo    "C:\Users\jsq7\OneDrive - Centers for Disease Control And Prevention (CDC)\projects\rocCumLog\repo\data\cork" ;
+LIBNAME demo    ".\data\cork" ;
 
 PROC FORMAT ;
     VALUE qual3G
@@ -53,8 +53,7 @@ PROC FORMAT ;
 RUN ;
 
 PROC IMPORT OUT= WORK._cork
-            DATAFILE= "C:\Users\jsq7\OneDrive - Centers for Disease Control And Prevention (CDC)\projects\rocCumLog\repo\data\cork\cork_SI2.csv"
-/*            DATAFILE= "./data/cork/cork_SI2.csv" */
+            DATAFILE= "./data/cork/cork_SI2.csv"
             DBMS=CSV REPLACE ;
 RUN ;
 
