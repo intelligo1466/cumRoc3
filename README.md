@@ -78,97 +78,97 @@
 
 __Note__: macro parameter **_macMode** selects one of three operational modes:
 
-		1: Complete procedure [DEFAULT]: analysis, post-processing, reporting
-		2: Analysis and post-processing only
-		3: Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
+	1: Complete procedure [DEFAULT]: analysis, post-processing, reporting
+	2: Analysis and post-processing only
+	3: Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
 
 
 ### PARAMETERS, Positional
-	_yOut		Dependent variable,	three-level	ordinal	outcome	encoded	as numeric:	0, 1, 2
-	_xPred		Predictor variable,	continuous
-	_vsLbl		Label for predictor	variable: for LABEL	statement
-	_cutFmt		SAS	format for cutpoints of	predictor variable
+	_yOut		Dependent variable, three-level ordinal outcome encoded as numeric: 0, 1, 2
+	_xPred		Predictor variable, continuous
+	_vsLbl		Label for predictor variable: for LABEL statement
+	_cutFmt		SAS format for cutpoints of predictor variable
 	_dsn		SAS7BDAT input data	comprising ternary ordinal dependent variable and continuous predictor
-	_dir00		Root output	directory location
-	_dirOut		Results	output subdirectory	location
-					&_dir00./&_dirOut fully	specifies text output subdirectory location
+	_dir00		Root output directory location
+	_dirOut		Results output subdirectory location
+					&_dir00./&_dirOut fully specifies text output subdirectory location
 	_dirPng		Image output subdirectory location
-					&_dir00./&_dirPng fully	specifies image	output subdirectory	location
-	_dateOut	Date suffix	for	output filename
+					&_dir00./&_dirPng fully specifies image output subdirectory location
+	_dateOut	Date suffix for output filename
 
 ### PARAMETERS, Keyword with defaults
-	_libNm=DEMO		Input SAS library name: for LIBNAME statement
-					DEFAULT: DEMO
+	_libNm=DEMO	Input SAS library name: for LIBNAME statement
+				DEFAULT: DEMO
 	_propOdds=PO	Specify model odds assumption
-					DEFAULT: PO
-						PO:		proportional odds assumption
-						NPO:	non-proportional odds assumption
-	_yOrd=A			Specify order of ordinal outcome levels
-					Equivalent to specifying reference outcome level
-					DEFAULT: A
-						A: levels in ascending order ==> reference level &_yOut=2
-						D: levels in descending order ==> reference level &_yOut=0
-	_macMode=1		Specify macro's operating mode
-					DEFAULT: 1
-						1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
-						2: Analysis and criteria and parametric cutpoint calculation only
-						3: Reporting only: modes 1 or 2 must have been run at least once before
-	_macComp=YES    Request compilation of supporting macros
-					Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
-					DEFAULT: YES
-						YES:	compile supporting macros
-						NO:		skip compilation
-	_outCntnts=YES  Request CONTENTS of permanent output datasets
+				DEFAULT: PO
+					PO: proportional odds assumption
+					NPO: non-proportional odds assumption
+	_yOrd=A		Specify order of ordinal outcome levels
+				Equivalent to specifying reference outcome level
+				DEFAULT: A
+					A: levels in ascending order ==> reference level &_yOut=2
+					D: levels in descending order ==> reference level &_yOut=0
+	_macMode=1	Specify macro's operating mode
+				DEFAULT: 1
+					1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
+					2: Analysis and criteria and parametric cutpoint calculation only
+					3: Reporting only: modes 1 or 2 must have been run at least once before
+	_macComp=YES	Request compilation of supporting macros
+				Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
+				DEFAULT: YES
+					YES:	compile supporting macros
+					NO:		skip compilation
+	_outCntnts=YES	Request CONTENTS of permanent output datasets
 					DEFAULT: YES
 						YES:	append CONTENTS of permanent output datasets to results
 						NO:		do not run CONTENTS for permanent output datasets
-	_outRtf=NO      Request tabulated results output to RTF
-					DEFAULT: NO
-						NO:		Outputs results to TXT
-						YES:	Outputs results to RTF
-	_debug0=NO      Request temporary scratch datasets be saved for review and debugging
-					DEFAULT: NO
-						NO:		Scratch datasets discarded
-						YES:	Scratch datasets retained in WORK library after end of macro run
+	_outRtf=NO	Request tabulated results output to RTF
+				DEFAULT: NO
+					NO:		Outputs results to TXT
+					YES:	Outputs results to RTF
+	_debug0=NO	Request temporary scratch datasets be saved for review and debugging
+				DEFAULT: NO
+					NO:		Scratch datasets discarded
+					YES:	Scratch datasets retained in WORK library after end of macro run
 
 ## DEMONSTRATIONS
 ### Example Call 1 -- Cork Quality
 ~~~sas
-	%cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
-		%STR(C:/rootDir/project),
-		%STR(Output/Cork),
-		%STR(Images/Cork),
-		2019_DEMO,_macMode=1,_macComp=YES,
-		_outCntnts=YES,_outRtf=NO) ;
+%cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
+	%STR(C:/rootDir/project),
+	%STR(Output/Cork),
+	%STR(Images/Cork),
+	2019_DEMO,_macMode=1,_macComp=YES,
+	_outCntnts=YES,_outRtf=NO) ;
 ~~~
 A more routine (and less verbose) call to %cumRoc3.
 * Supporting macros not recompiled (prerequisite: macros compiled at least once before during current SAS session)
 * CONTENTS of permanent output datasets not appended to results
 * Tabulated results output to RTF
 ~~~sas
-	%cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
-		%STR(C:/rootDir/project),
-		%STR(Output/Cork),
-		%STR(Images/Cork),
-		2019_DEMO,_macComp=NO,
-		_outCntnts=NO,_outRtf=YES) ;
+%cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
+	%STR(C:/rootDir/project),
+	%STR(Output/Cork),
+	%STR(Images/Cork),
+	2019_DEMO,_macComp=NO,
+	_outCntnts=NO,_outRtf=YES) ;
 ~~~
 
 ### Example Call 2 -- NHANES NNAL Tobacco Smoke Exposure
 ~~~sas
-	%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
-		%STR(C:/rootDir/project),
-		%STR(Output/NNAL),
-		%STR(Images/NNAL),
-		2019_DEMO,_propOdds=NPO,_macMode=1,_macComp=YES,
-		_outCntnts=YES,_outRtf=NO) ;
+%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
+	%STR(C:/rootDir/project),
+	%STR(Output/NNAL),
+	%STR(Images/NNAL),
+	2019_DEMO,_propOdds=NPO,_macMode=1,_macComp=YES,
+	_outCntnts=YES,_outRtf=NO) ;
 ~~~
 A less verbose call.
 ~~~sas
-	%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
-		%STR(C:/rootDir/project),
-		%STR(Output/NNAL),
-		%STR(Images/NNAL),
-		2019_DEMO,_propOdds=NPO,_macComp=NO,
-		_outCntnts=NO,_outRtf=YES) ;
+%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
+	%STR(C:/rootDir/project),
+	%STR(Output/NNAL),
+	%STR(Images/NNAL),
+	2019_DEMO,_propOdds=NPO,_macComp=NO,
+	_outCntnts=NO,_outRtf=YES) ;
 ~~~
