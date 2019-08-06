@@ -70,38 +70,38 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 
 ### PARAMETERS, Keyword with defaults
 	_libNm=DEMO	Input SAS library name: for LIBNAME statement
-				DEFAULT: DEMO
+			DEFAULT: DEMO
 	_propOdds=PO	Specify model odds assumption
-				DEFAULT: PO
-					PO: proportional odds assumption
-					NPO: non-proportional odds assumption
+			DEFAULT: PO
+				PO: proportional odds assumption
+				NPO: non-proportional odds assumption
 	_yOrd=A		Specify order of ordinal outcome levels
-				Equivalent to specifying reference outcome level
-				DEFAULT: A
-					A: levels in ascending order ==> reference level &_yOut=2
-					D: levels in descending order ==> reference level &_yOut=0
+			Equivalent to specifying reference outcome level
+			DEFAULT: A
+				A: levels in ascending order ==> reference level &_yOut=2
+				D: levels in descending order ==> reference level &_yOut=0
 	_macMode=1	Specify macro's operating mode
-				DEFAULT: 1
-					1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
-					2: Analysis and criteria and parametric cutpoint calculation only
-					3: Reporting only: modes 1 or 2 must have been run at least once before
+			DEFAULT: 1
+				1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
+				2: Analysis and criteria and parametric cutpoint calculation only
+				3: Reporting only: modes 1 or 2 must have been run at least once before
 	_macComp=YES	Request compilation of supporting macros
-				Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
-				DEFAULT: YES
-					YES:	compile supporting macros
-					NO:		skip compilation
+			Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
+			DEFAULT: YES
+				YES: compile supporting macros
+				NO: skip compilation
 	_outCntnts=YES	Request CONTENTS of permanent output datasets
-					DEFAULT: YES
-						YES:	append CONTENTS of permanent output datasets to results
-						NO:		do not run CONTENTS for permanent output datasets
+			DEFAULT: YES
+				YES: append CONTENTS of permanent output datasets to results
+				NO: do not run CONTENTS for permanent output datasets
 	_outRtf=NO	Request tabulated results output to RTF
-				DEFAULT: NO
-					NO:		Outputs results to TXT
-					YES:	Outputs results to RTF
+			DEFAULT: NO
+				NO: Outputs results to TXT
+				YES: Outputs results to RTF
 	_debug0=NO	Request temporary scratch datasets be saved for review and debugging
-				DEFAULT: NO
-					NO:		Scratch datasets discarded
-					YES:	Scratch datasets retained in WORK library after end of macro run
+			DEFAULT: NO
+				NO: Scratch datasets discarded
+				YES: Scratch datasets retained in WORK library after end of macro run
 
 ## INPUT
 	SAS7BDAT: input data comprising ternary ordinal dependent variable (&_yOut) and continuous predictor (&_xPred)

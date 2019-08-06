@@ -14,8 +14,9 @@
 	1. The findings and conclusions in this repository are those of the author and do not necessarily represent the views of the Centers for Disease Control and Prevention. Use of trade names is for identification only and does not imply endorsement by the Centers for Disease Control and Prevention.
 * ATTRIBUTION
 	1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
-	1. SUGGESTED CITATION FOR %cumRoc3
-	> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0, Zenodo, DOI: TBD.***
+	1. SUGGESTED CITATION FOR %cumRoc3:
+
+> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0, Zenodo, DOI: TBD.***
 
 ## MANIFEST
 * %cumRoc3 (in macros/cumRoc3_MAIN_MAC.sas)
@@ -24,22 +25,23 @@
 
 	Downloading the repository will provide the relative directory structure necessary for running %cumRoc3 for these demonstrations. Naturally, you'll have to modify the SAS programs for these demonstrations to correctly point to your local directory, but the SAS macro program will only need the relative directory structure already in the repository.
 	* Cork Quality -- corkCumRoc3_CALL.sas
+		* Output datasets: description in CUMROC3_shsX3_URXNALln_NPO_CONTENTS_2019_DEMO.TXT in output\cork\
+		* Cumulative ROC curves: PNGs in images\cork\
+		* Results: see CUMROC3_quality_dArea_PO_2019_DEMO.TXT in output\cork\
 	* NHANES NNAL Tobacco Smoke Exposure -- nnalCumRoc3_CALL.sas
+		* Output datasets: description in CUMROC3_quality_dArea_PO_CONTENTS_2019_DEMO.TXT in output\nnal\
+		* Cumulative ROC curves: PNGs in images\nnal\
+		* Results: see CUMROC3_shsX3_URXNALln_NPO_2019_DEMO.TXT in output\nnal\
+
 * Demonstration datasets
 	* Cork Quality -- cork_SI2.CSV in data/cork
 		* Description: see README_SI2.md in data/cork.
 		* Reference: Campilho A.J. [Image Recognition and Automatic Classification of Natural Products] (Portuguese). Available at http://extras.springer.com/2007/978-3-540-71972-4/DATASETS/Cork%20Stoppers/Cork%20Stoppers.xls (February 27, 2017) 1985.
 		* Usage: import CSV to SAS7BDAT by revising demoCork.sas in data\cork\ for your local circumstances then running the program.
-		* Output datasets: description in CUMROC3_shsX3_URXNALln_NPO_CONTENTS_2019_DEMO.TXT in output\cork\
-		* Cumulative ROC curves: PNGs in images\cork\
-		* Results: see CUMROC3_quality_dArea_PO_2019_DEMO.TXT in output\cork\
 	* NHANES NNAL Tobacco Smoke Exposure -- nhanes_SI3.CSV in data/nnal
 		* Description: see README_SI3.md in data/nnal.
 		* Reference: CDC National Center for Health Statistics. National Health and Nutrition Examination Survey. Available at http://www.cdc.gov/nchs/nhanes.htm (April 22, 2017) 2017.
 		* Usage: import CSV to SAS7BDAT by revising demoNnal.sas in data\nnal\ for your local circumstances then running the program.
-		* Output datasets: description in CUMROC3_quality_dArea_PO_CONTENTS_2019_DEMO.TXT in output\nnal\
-		* Cumulative ROC curves: PNGs in images\nnal\
-		* Results: see CUMROC3_shsX3_URXNALln_NPO_2019_DEMO.TXT in output\nnal\
 
 ## PREREQUISITES
 * SAS 9.4 and later
@@ -88,48 +90,48 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 	_xPred		Predictor variable, continuous
 	_vsLbl		Label for predictor variable: for LABEL statement
 	_cutFmt		SAS format for cutpoints of predictor variable
-	_dsn		SAS7BDAT input data	comprising ternary ordinal dependent variable and continuous predictor
+	_dsn		SAS7BDAT input data comprising ternary ordinal dependent variable and continuous predictor
 	_dir00		Root output directory location
 	_dirOut		Results output subdirectory location
-					&_dir00./&_dirOut fully specifies text output subdirectory location
+				&_dir00./&_dirOut fully specifies text output subdirectory location
 	_dirPng		Image output subdirectory location
-					&_dir00./&_dirPng fully specifies image output subdirectory location
+				&_dir00./&_dirPng fully specifies image output subdirectory location
 	_dateOut	Date suffix for output filename
 
 ### PARAMETERS, Keyword with defaults
 	_libNm=DEMO	Input SAS library name: for LIBNAME statement
-				DEFAULT: DEMO
+			DEFAULT: DEMO
 	_propOdds=PO	Specify model odds assumption
-				DEFAULT: PO
-					PO: proportional odds assumption
-					NPO: non-proportional odds assumption
+			DEFAULT: PO
+				PO: proportional odds assumption
+				NPO: non-proportional odds assumption
 	_yOrd=A		Specify order of ordinal outcome levels
-				Equivalent to specifying reference outcome level
-				DEFAULT: A
-					A: levels in ascending order ==> reference level &_yOut=2
-					D: levels in descending order ==> reference level &_yOut=0
+			Equivalent to specifying reference outcome level
+			DEFAULT: A
+				A: levels in ascending order ==> reference level &_yOut=2
+				D: levels in descending order ==> reference level &_yOut=0
 	_macMode=1	Specify macro's operating mode
-				DEFAULT: 1
-					1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
-					2: Analysis and criteria and parametric cutpoint calculation only
-					3: Reporting only: modes 1 or 2 must have been run at least once before
+			DEFAULT: 1
+				1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
+				2: Analysis and criteria and parametric cutpoint calculation only
+				3: Reporting only: modes 1 or 2 must have been run at least once before
 	_macComp=YES	Request compilation of supporting macros
-				Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
-				DEFAULT: YES
-					YES:	compile supporting macros
-					NO:		skip compilation
+			Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
+			DEFAULT: YES
+				YES: compile supporting macros
+				NO: skip compilation
 	_outCntnts=YES	Request CONTENTS of permanent output datasets
-					DEFAULT: YES
-						YES:	append CONTENTS of permanent output datasets to results
-						NO:		do not run CONTENTS for permanent output datasets
+			DEFAULT: YES
+				YES: append CONTENTS of permanent output datasets to results
+				NO: do not run CONTENTS for permanent output datasets
 	_outRtf=NO	Request tabulated results output to RTF
-				DEFAULT: NO
-					NO:		Outputs results to TXT
-					YES:	Outputs results to RTF
+			DEFAULT: NO
+				NO: Outputs results to TXT
+				YES: Outputs results to RTF
 	_debug0=NO	Request temporary scratch datasets be saved for review and debugging
-				DEFAULT: NO
-					NO:		Scratch datasets discarded
-					YES:	Scratch datasets retained in WORK library after end of macro run
+			DEFAULT: NO
+				NO: Scratch datasets discarded
+				YES: Scratch datasets retained in WORK library after end of macro run
 
 ## DEMONSTRATIONS
 ### Example Call 1 -- Cork Quality
