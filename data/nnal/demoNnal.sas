@@ -32,14 +32,8 @@ Variables
                     0 => Non-exposed
                     1 => SHS Exposed
                     2 => Combusted tobacco, Exlusive
-
-==========================================================================
-FOR PRODUCTION
-    x 'cd C:/Users/jsq7/OneDrive - Centers for Disease Control And Prevention (CDC)/projects/rocCumLog/repo' ;
-    LIBNAME demo "./data/nnal" ;
-==========================================================================
 */
-LIBNAME demo    "C:\Users\jsq7\OneDrive - Centers for Disease Control And Prevention (CDC)\projects\rocCumLog\repo\data\nnal" ;
+LIBNAME demo    ".\data\nnal" ;
 
 PROC FORMAT ;
     Value nhCyc
@@ -55,8 +49,7 @@ PROC FORMAT ;
 RUN ;
 
 PROC IMPORT OUT= WORK._nnal
-            DATAFILE= "C:\Users\jsq7\OneDrive - Centers for Disease Control And Prevention (CDC)\projects\rocCumLog\repo\data\nnal\nhanes_SI3.csv"
-/*            DATAFILE= "./data/nnal/nhanes_SI3.csv" */
+            DATAFILE= "./data/nnal/nhanes_SI3.csv"
             DBMS=CSV REPLACE ;
 RUN ;
 
