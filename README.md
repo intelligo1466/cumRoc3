@@ -93,9 +93,9 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 	_dsn		SAS7BDAT input data comprising ternary ordinal dependent variable and continuous predictor
 	_dir00		Root output directory location
 	_dirOut		Results output subdirectory location
-				&_dir00./&_dirOut fully specifies text output subdirectory location
+			&_dir00./&_dirOut fully specifies text output subdirectory location
 	_dirPng		Image output subdirectory location
-				&_dir00./&_dirPng fully specifies image output subdirectory location
+			&_dir00./&_dirPng fully specifies image output subdirectory location
 	_dateOut	Date suffix for output filename
 
 ### PARAMETERS, Keyword with defaults
@@ -103,35 +103,35 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 			DEFAULT: DEMO
 	_propOdds=PO	Specify model odds assumption
 			DEFAULT: PO
-				PO: proportional odds assumption
-				NPO: non-proportional odds assumption
+			PO: proportional odds assumption
+			NPO: non-proportional odds assumption
 	_yOrd=A		Specify order of ordinal outcome levels
 			Equivalent to specifying reference outcome level
 			DEFAULT: A
-				A: levels in ascending order ==> reference level &_yOut=2
-				D: levels in descending order ==> reference level &_yOut=0
+			A: levels in ascending order ==> reference level &_yOut=2
+			D: levels in descending order ==> reference level &_yOut=0
 	_macMode=1	Specify macro's operating mode
 			DEFAULT: 1
-				1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
-				2: Analysis and criteria and parametric cutpoint calculation only
-				3: Reporting only: modes 1 or 2 must have been run at least once before
+			1: Complete procedure: analysis, criteria and parametric cutpoint calculation, reporting
+			2: Analysis and criteria and parametric cutpoint calculation only
+			3: Reporting only: modes 1 or 2 must have been run at least once before
 	_macComp=YES	Request compilation of supporting macros
 			Supporting macros must be compiled at least once during current SAS session before running %cumRoc3
 			DEFAULT: YES
-				YES: compile supporting macros
-				NO: skip compilation
+			YES: compile supporting macros
+			NO: skip compilation
 	_outCntnts=YES	Request CONTENTS of permanent output datasets
 			DEFAULT: YES
-				YES: append CONTENTS of permanent output datasets to results
-				NO: do not run CONTENTS for permanent output datasets
+			YES: append CONTENTS of permanent output datasets to results
+			NO: do not run CONTENTS for permanent output datasets
 	_outRtf=NO	Request tabulated results output to RTF
 			DEFAULT: NO
-				NO: Outputs results to TXT
-				YES: Outputs results to RTF
+			NO: Outputs results to TXT
+			YES: Outputs results to RTF
 	_debug0=NO	Request temporary scratch datasets be saved for review and debugging
 			DEFAULT: NO
-				NO: Scratch datasets discarded
-				YES: Scratch datasets retained in WORK library after end of macro run
+			NO: Scratch datasets discarded
+			YES: Scratch datasets retained in WORK library after end of macro run
 
 ## DEMONSTRATIONS
 ### Example Call 1 -- Cork Quality
