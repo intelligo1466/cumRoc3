@@ -4,9 +4,9 @@ User-called SAS macro that wraps supporting macros.
 ## Purpose
 Implements cumulative ROC curve analysis for three-level (ternary) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis. Analysis includes identification of cutpoints that discriminate ordinal outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.
 * Three operational modes may be selected for the macro
-	1. Complete procedure [DEFAULT]: analysis, post-processing, reporting
-	1. Analysis and post-processing only
-	1. Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
+1. Complete procedure [DEFAULT]: analysis, post-processing, reporting
+1. Analysis and post-processing only
+1. Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
 * Author: B. Rey de Castro, Sc.D., rdecastro@cdc.gov
 	* Centers for Disease Control and Prevention, Atlanta, Georgia, USA
 * License: Apache-2.0 -- Apache License 2.0
