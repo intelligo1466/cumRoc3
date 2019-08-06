@@ -118,17 +118,17 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 		_yOK=FAIL	DEFAULT: FAIL
 						FAIL: incompatible
 						PASS: compatible
-	MACRO VARIABLE, GLOBAL: Indicates order	of ordinal outcome for transformation to binary	outcome
-		_ordIng		ASCEND	for _yOrd = A: Y=2 reference category
-				DESCEND	for _yOrd = D: Y=0 reference category
+	MACRO VARIABLE, GLOBAL: Indicates order of ordinal outcome for transformation to binary	outcome
+		_ordIng		ASCEND for _yOrd = A: Y=2 reference category
+				DESCEND for _yOrd = D: Y=0 reference category
 	MACRO VARIABLE, GLOBAL: Format name of ordinal outcome
 		_yFmt		<SAS format>
-	MACRO VARIABLE, GLOBAL: Label of continuous	predictor
+	MACRO VARIABLE, GLOBAL: Label of continuous predictor
 		_xLbl		<SAS label>
-	MACRO VARIABLE, GLOBAL: Number of observations used	for	models
+	MACRO VARIABLE, GLOBAL: Number of observations used for models
 		_xObs		Formatted as integer
 				_xObs = _nObs
-	MACRO VARIABLE, GLOBAL: Number of observations used	for	models
+	MACRO VARIABLE, GLOBAL: Number of observations used for models
 		_nObs		Formatted with commas separating every three digits
 				_nObs = _xObs
 	SAS7BDAT: Temporary input data from &_LIBNM..&_dsN used for macro processing
