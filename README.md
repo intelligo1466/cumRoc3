@@ -53,9 +53,9 @@
     _outCntnts=YES,_outRtf=NO) ;
 ~~~
 A more routine (and less verbose) call to %cumRoc3
-* Supporting macros not recompiled (prerequisite: macros compiled at least once before during current SAS session)
-* CONTENTS of permanent output datasets not appended to results
-* Tabulated results output to RTF
+	* Supporting macros not recompiled (prerequisite: macros compiled at least once before during current SAS session)
+	* CONTENTS of permanent output datasets not appended to results
+	* Tabulated results output to RTF
 ~~~sas
 %cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
     %STR(C:/rootDir/project),
