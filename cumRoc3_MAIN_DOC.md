@@ -110,27 +110,27 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 ## OUTPUT
 	MACRO VARIABLE, GLOBAL: Suffix for output filename
 		_fileSfx	&_YOUT._&_XPRED._PO for proportonal odds assumption
-					&_YOUT._&_XPRED._NPO for non-proportonal odds assumption
+				&_YOUT._&_XPRED._NPO for non-proportonal odds assumption
 	MACRO VARIABLE, GLOBAL: Title text indicating which proportional odds assumption used in cumulative logit model
 		_poTitle	Proportonal Odds
-					Non-Proportonal Odds
+				Non-Proportonal Odds
 	MACRO VARIABLE, GLOBAL: Indicator that ternary ordinal dependent variable is compatible
 		_yOK=FAIL	DEFAULT: FAIL
 						FAIL: incompatible
 						PASS: compatible
 	MACRO VARIABLE, GLOBAL: Indicates order	of ordinal outcome for transformation to binary	outcome
 		_ordIng		ASCEND	for _yOrd = A: Y=2 reference category
-					DESCEND	for _yOrd = D: Y=0 reference category
+				DESCEND	for _yOrd = D: Y=0 reference category
 	MACRO VARIABLE, GLOBAL: Format name of ordinal outcome
 		_yFmt		<SAS format>
 	MACRO VARIABLE, GLOBAL: Label of continuous	predictor
 		_xLbl		<SAS label>
 	MACRO VARIABLE, GLOBAL: Number of observations used	for	models
 		_xObs		Formatted as integer
-					_xObs = _nObs
+				_xObs = _nObs
 	MACRO VARIABLE, GLOBAL: Number of observations used	for	models
 		_nObs		Formatted with commas separating every three digits
-					_nObs = _xObs
+				_nObs = _xObs
 	SAS7BDAT: Temporary input data from &_LIBNM..&_dsN used for macro processing
 		TARGET: _inDsn
 	SAS7BDAT: Parameter estimates for variance calculation of ratio by Delta and Fieller's Methods
@@ -207,6 +207,7 @@ A less verbose call.
 
 ## DEVELOPMENT PLATFORM
 OS: Microsoft Windows 10 64-bit
+
 SAS: 9.4 TS1M3 64-bit
 
 # DISCLAIMERS
@@ -215,5 +216,5 @@ SAS: 9.4 TS1M3 64-bit
 
 # ATTRIBUTION
 1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
-1. SUGGESTED CITATION FOR %cumRoc3
+1. SUGGESTED CITATION FOR %cumRoc3:
 > ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0, Zenodo, DOI: TBD.***
