@@ -21,6 +21,7 @@
 * %cumRoc3 (in macros/cumRoc3_MAIN_MAC.sas)
 	* Macro that is called directly by the user and wraps several supporting macros (in macros/)
 * Demonstration calls to %cumRoc3
+
 	Downloading the repository will provide the relative directory structure necessary for running %cumRoc3 for these demonstrations. Naturally, you'll have to modify the SAS programs for these demonstrations to correctly point to your local directory, but the SAS macro program will only need the relative directory structure already in the repository.
 	* Cork Quality -- corkCumRoc3_CALL.sas
 	* NHANES NNAL Tobacco Smoke Exposure -- nnalCumRoc3_CALL.sas
