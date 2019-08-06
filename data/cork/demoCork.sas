@@ -35,12 +35,6 @@ Original Cork Stopper Data Set
     Springer Berlin Heidelberg
     2012
     ISBN=9783642566516
-
-==========================================================================
-FOR PRODUCTION
-    x 'cd C:/Users/jsq7/OneDrive - Centers for Disease Control And Prevention (CDC)/projects/rocCumLog/repo' ;
-    LIBNAME demo "~/data/cork" ;
-==========================================================================
 */
 LIBNAME demo    ".\data\cork" ;
 
@@ -60,7 +54,7 @@ RUN ;
 DATA demo.cork_SI ;
     LENGTH quality_C $ 10 ;
     SET _cork ;
-    LABEL   quality	    =   "Cork Quality"
+    LABEL   quality	=   "Cork Quality"
             quality_C   =   "Cork Quality"
             dArea       =   "Defects, Total Area [px]"
     ;
