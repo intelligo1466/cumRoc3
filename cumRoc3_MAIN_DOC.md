@@ -7,10 +7,10 @@ Implements cumulative ROC curve analysis for three-level (ternary) ordinal outco
 1. Complete procedure [DEFAULT]: analysis, post-processing, reporting
 1. Analysis and post-processing only
 1. Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
+
 * Author: B. Rey de Castro, Sc.D., rdecastro@cdc.gov
 	* Centers for Disease Control and Prevention, Atlanta, Georgia, USA
-* License: Apache-2.0 -- Apache License 2.0
-* Copyright: CC-BY-4.0 -- Creative Commons Attribution 4.0 International Public License
+* Licenses: Apache-2.0, CC-BY-4.0
 
 ## PREREQUISITES
 * SAS 9.4 and later

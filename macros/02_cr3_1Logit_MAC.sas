@@ -1,8 +1,7 @@
 /*  ##########################################################################
     ##########################################################################
     SAS Version 9.4 TS1M3 and later
-    License     Apache-2.0 Apache License 2.0
-    Copyright   CC-BY-4.0 Creative Commons Attribution 4.0 International Public License
+    Licenses    Apache-2.0, CC-BY-4.0
     ##########################################################################
     Name:       %cr3_1Logit
     Type:       SAS macro
