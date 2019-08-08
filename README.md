@@ -17,7 +17,7 @@
 	1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
 	1. SUGGESTED CITATION FOR %cumRoc3:
 
-	> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1, DOI:10.5281/zenodo.3364094.***
+> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1, DOI:10.5281/zenodo.3364094.***
 
 ## MANIFEST
 * %cumRoc3 (in macros/cumRoc3_MAIN_MAC.sas)
