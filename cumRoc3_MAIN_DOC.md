@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/200124550.svg)](https://zenodo.org/badge/latestdoi/200124550)
 # %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes
 ## Type
 User-called SAS macro that wraps supporting macros.
@@ -11,6 +12,9 @@ Implements cumulative ROC curve analysis for three-level (ternary) ordinal outco
 * Author: B. Rey de Castro, Sc.D., rdecastro@cdc.gov
 	* Centers for Disease Control and Prevention, Atlanta, Georgia, USA
 * Licenses: Apache-2.0, CC-BY-4.0
+* SUGGESTED CITATION FOR %cumRoc3:
+
+> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1, DOI:10.5281/zenodo.3364094.***
 
 ## PREREQUISITES
 * SAS 9.4 and later
@@ -217,4 +221,5 @@ SAS: 9.4 TS1M3 64-bit
 # ATTRIBUTION
 1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
 1. SUGGESTED CITATION FOR %cumRoc3:
-> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0, Zenodo, DOI: TBD.***
+
+> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1, DOI:10.5281/zenodo.3364094.***
