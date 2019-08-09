@@ -1,5 +1,5 @@
 [![DOI](https://zenodo.org/badge/200124550.svg)](https://zenodo.org/badge/latestdoi/200124550)
-# %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes
+# %cumRoc3 --- Cumulative ROC curve analysis of three-level ordinal outcomes
 ## Type
 User-called SAS macro that wraps supporting macros.
 ## Purpose
