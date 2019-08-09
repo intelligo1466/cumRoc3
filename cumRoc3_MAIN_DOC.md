@@ -1,4 +1,9 @@
 [![DOI](https://zenodo.org/badge/200124550.svg)](https://zenodo.org/badge/latestdoi/200124550)
+![GitHub release](https://img.shields.io/github/release/intelligo1466/cumRoc3)
+![GitHub All Releases](https://img.shields.io/github/downloads/intelligo1466/cumRoc3/total)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 # %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes
 ## Type
 User-called SAS macro that wraps supporting macros.
