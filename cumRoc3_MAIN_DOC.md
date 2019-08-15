@@ -8,16 +8,15 @@
 ## Type
 User-called SAS® macro that wraps supporting macros.
 ## Purpose
-Implements cumulative ROC curve analysis for three-level (ternary) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis. Analysis includes identification of cutpoints that discriminate ordinal outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.
+Implements cumulative ROC curve analysis for three-level \(ternary\) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis. Analysis includes identification of cutpoints that discriminate ordinal outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.
 * Three operational modes may be selected for the macro
 1. Complete procedure [DEFAULT]: analysis, post-processing, reporting
 1. Analysis and post-processing only
 1. Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
 
-* Author: B. Rey de Castro, Sc.D., rdecastro@cdc.gov
-	* Centers for Disease Control and Prevention, Atlanta, Georgia, USA
+* Developer/Author: B. Rey de Castro, Sc.D.
 * Licenses: Apache-2.0, CC-BY-4.0
-* SUGGESTED CITATION FOR %cumRoc3:
+* SUGGESTED CITATION
 
 > ***deCastro, B.R. %cumRoc3 --- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1. 2019. DOI:10.5281/zenodo.3364094.***
 
@@ -26,12 +25,12 @@ Implements cumulative ROC curve analysis for three-level (ternary) ordinal outco
 	* Base SAS
 	* SAS/STAT
 	* SAS IML
-* Three-level (ternary) ordinal outcome with levels encoded as: 0, 1, 2
+* Three-level \(ternary\) ordinal outcome with levels encoded as: 0, 1, 2
 	* Designated reference level
-		* DEFAULT:      encoded as: 2 (Macro parameter _yOrd=A)
-		* Alternative:  encoded as: 0 (Macro parameter _yOrd=D)
+		* DEFAULT:      encoded as: 2 \(Macro parameter \_yOrd=A\)
+		* Alternative:  encoded as: 0 \(Macro parameter \_yOrd=D\)
 * Continuous predictor variable
-* User-specified directory structure for output of tabulated results and cumulative ROC curve images (see macro parameters _dir00, _dirOut, _dirPng)
+* User-specified directory structure for output of tabulated results and cumulative ROC curve images \(see macro parameters \_dir00, \_dirOut, \_dirPng\)
 
 ## ADVISORIES
 * The code has been tested in SAS 9.4 TS1M3 with the two included demonstration datasets and runs with no ERRORs or WARNINGs output to the LOG.
@@ -39,14 +38,14 @@ Implements cumulative ROC curve analysis for three-level (ternary) ordinal outco
 * Preferences to facilitate interpretation
 	* Numeric levels of the ternary ordinal outcome should be assigned a SAS format
 	* The continuous predictor should be assigned a SAS label
-* For supporting macro %cr3_1Logit
+* For supporting macro [%cr3_1Logit](https://github.com/intelligo1466/cumRoc3/blob/develop/macros/02_cr3_1Logit_MAC.sas)
 	* Occasionally had convergence problems running Stage 1 cumulative logit regression with SAS 9.4 TS1M3 on Windows 10 64-bit.
 	* To ensure routine convergence, MAXITER= 500 was set for Newton-Raphson optimization with ridging (SAS default).
 	* As this is an arbitrary setting, consider adjusting or eliminating this setting if it does not suit your needs.
-* For supporting macro %cr3_2ROC
-	* In SAS 9.4, OUTROC= in LOGISTIC includes the automatic variable _SOURCE_ and is used by %cr3_2ROC.
-	* In versions before 9.4, this automatic variable is instead called _STEP_ and takes different values than _SOURCE_.
-	* The macro's default is to refer to _SOURCE_, but to permit use in versions before 9.4 I have included commented-out code that refers to _STEP_.
+* For supporting macro [%cr3_2ROC](https://github.com/intelligo1466/cumRoc3/blob/develop/macros/03_cr3_2ROC_MAC.sas)
+	* In SAS 9.4, OUTROC= in LOGISTIC includes the automatic variable \_SOURCE\_ and is used by %cr3_2ROC.
+	* In versions before 9.4, this automatic variable is instead called \_STEP\_ and takes different values than \_SOURCE\_.
+	* The macro's default is to refer to \_SOURCE\_, but to permit use in versions before 9.4 I have included commented-out code that refers to \_STEP\_.
 
 ***
 
@@ -60,9 +59,9 @@ Implements cumulative ROC curve analysis for three-level (ternary) ordinal outco
 
 __Note__: macro parameter **_macMode** selects one of three operational modes:
 
-	1: Complete procedure [DEFAULT]: analysis, post-processing, reporting
-	2: Analysis and post-processing only
-	3: Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
+	1. Complete procedure [DEFAULT]: analysis, post-processing, reporting
+	1. Analysis and post-processing only
+	1. Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
 
 ### PARAMETERS, Positional
 	_yOut		Dependent variable, three-level ordinal outcome encoded as numeric: 0, 1, 2
@@ -131,9 +130,9 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 		_ordIng		ASCEND for _yOrd = A: Y=2 reference category
 				DESCEND for _yOrd = D: Y=0 reference category
 	MACRO VARIABLE, GLOBAL: Format name of ordinal outcome
-		_yFmt		<SAS format>
+		_yFmt		A SAS format
 	MACRO VARIABLE, GLOBAL: Label of continuous predictor
-		_xLbl		<SAS label>
+		_xLbl		A SAS label
 	MACRO VARIABLE, GLOBAL: Number of observations used for models
 		_xObs		Formatted as integer
 				_xObs = _nObs
@@ -168,11 +167,11 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 		TARGET: &_dir00./&_dirPng./ROC&_J._&_fileSfx._&_dateOut..PNG
 	Output options for tabulated results
 		_outRtf=NO :: DEFAULT
-			TXT:: TARGET: &_dir00./&_dirOut/CUMROC3_&_fileSfx._&_dateOut..TXT
+			TXT:: TARGET: &_dir00./&_dirOut./CUMROC3_&_fileSfx._&_dateOut..TXT
 		_outRtf=YES
-			RTF:: TARGET: &_dir00./&_dirOut/CUMROC3_&_fileSfx._&_dateOut..RTF
+			RTF:: TARGET: &_dir00./&_dirOut./CUMROC3_&_fileSfx._&_dateOut..RTF
 
-## Demonstrations
+## DEMONSTRATIONS
 ### Example Call 1 -- Cork Quality
 ~~~sas
 %cumRoc3(quality,dArea,Quality,%STR(BESTD8.3),cork_SI,
@@ -219,12 +218,13 @@ OS: Microsoft Windows 10 64-bit
 
 SAS: 9.4 TS1M3 64-bit
 
+# LICENSING
+Licensed under Apache-2.0 and CC-BY-4.0, which are mutually compatible with GPL-3.0-only under specified conditions. You may obtain a copy of the complete Apache-2.0 and CC-BY-4.0 licenses at [LICENSE](https://github.com/intelligo1466/cumRoc3/blob/develop/LICENSE). For attribution, see suggested citation for %cumRoc3 above.
+
+1. **Apache-2.0** \[Informal and incomplete highlights of terms\]. Under the Apache License, Version 2.0 you may freely use, modify, and redistribute this software for personal or commercial purposes. If you create and redistribute software that includes this software in whole or in part, you must include: a\) a copy of the complete Apache-2.0 license; b\) clear attribution to the developer/author \[me\]; and c\) indication of all significant modifications to this software that clearly identifies the modifications as your work.
+
+1. **CC-BY-4.0** \[Informal and incomplete highlights of terms\]. Under the Creative Commons Attribution International License, Version 4.0 you may share and adapt this software for any purpose, including personal and commercial, as long as you: a\) give appropriate credit to the developer/author \[me\]; b\) provide a link to the complete CC-BY-4.0 license; and c\) and indicate if changes were made to this software.
+
 # DISCLAIMERS
 1. DISCLAIMER OF WARRANTY. Under the terms of the Apache License 2.0 License, "Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "as is" basis, without warranties or conditions of any kind, either express or implied, including, without limitation, any warranties or conditions of title, non-infringement, merchantability, or fitness for a particular purpose. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License."
 1. The findings and conclusions in this repository are those of the author and do not necessarily represent the views of the Centers for Disease Control and Prevention. Use of trade names is for identification only and does not imply endorsement by the Centers for Disease Control and Prevention.
-
-# ATTRIBUTION
-1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
-1. SUGGESTED CITATION FOR %cumRoc3:
-
-> ***deCastro, B.R. 2019, %cumRoc3 -- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1, DOI:10.5281/zenodo.3364094.***

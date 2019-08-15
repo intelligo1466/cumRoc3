@@ -5,58 +5,55 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 # %cumRoc3 --- Cumulative ROC curve analysis of three-level ordinal outcomes
-**%cumRoc3** is a SAS® macro that implements cumulative ROC curve analysis for three-level (ternary) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis. Analysis includes identification of cutpoints that discriminate ordinal outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.
+**%cumRoc3** is a SAS® macro that implements cumulative ROC curve analysis for three-level \(ternary\) ordinal outcomes and comprises a two-stage semiprametric method where Stage 1 is cumulative logit regression and Stage 2 is cumulative ROC curve analysis. Analysis includes identification of cutpoints that discriminate ordinal outcome levels based on ROC curve-based criteria -- Total Accuracy, Youden Index, Matthews Correlation -- as well as calculation of parametric cutpoints from cumulative logit regression parameters.
 * Three operational modes may be selected for the macro
 1. Complete procedure [DEFAULT]: analysis, post-processing, reporting
 1. Analysis and post-processing only
 1. Reporting only (prerequisite: modes 1 or 2 must have been run at least once before)
 
-* Author: B. Rey de Castro, Sc.D., rdecastro@cdc.gov
-	* Centers for Disease Control and Prevention, Atlanta, Georgia, USA
+* Developer/Author: B. Rey de Castro, Sc.D.
 * Licenses: Apache-2.0, CC-BY-4.0
 
 * DISCLAIMERS
 	1. DISCLAIMER OF WARRANTY. Under the terms of the Apache License 2.0 License, "Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "as is" basis, without warranties or conditions of any kind, either express or implied, including, without limitation, any warranties or conditions of title, non-infringement, merchantability, or fitness for a particular purpose. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License."
 	1. The findings and conclusions in this repository are those of the author and do not necessarily represent the views of the Centers for Disease Control and Prevention. Use of trade names is for identification only and does not imply endorsement by the Centers for Disease Control and Prevention.
-* ATTRIBUTION
-	1. Under the terms of Creative Commons License CC-BY-4.0, "You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
-	1. SUGGESTED CITATION FOR %cumRoc3:
+* SUGGESTED CITATION
 
 > ***deCastro, B.R. %cumRoc3 --- Cumulative ROC curve analysis of three-level ordinal outcomes, v1.0.1. 2019. DOI:10.5281/zenodo.3364094.***
 
 ## MANIFEST
-* %cumRoc3 (in macros/cumRoc3_MAIN_MAC.sas)
-	* Macro that is called directly by the user and wraps several supporting macros (in macros/)
+* %cumRoc3 (in [macros/cumRoc3_MAIN_MAC.sas](https://github.com/intelligo1466/cumRoc3/blob/develop/macros/cumRoc3_MAIN_MAC.sas))
+	* Macro that is called directly by the user and wraps several supporting macros (in [macros/](https://github.com/intelligo1466/cumRoc3/tree/develop/macros))
 * Demonstration calls to %cumRoc3
 
 	Downloading the repository will provide the relative directory structure necessary for running %cumRoc3 for these demonstrations. Naturally, you'll have to modify the SAS programs for these demonstrations to correctly point to your local directory, but the SAS macro program will only need the relative directory structure already in the repository.
-	* Cork Quality -- corkCumRoc3_CALL.sas
-		* Output datasets: description in CUMROC3_shsX3_URXNALln_NPO_CONTENTS_2019_DEMO.TXT in output\cork\
-		* Cumulative ROC curves: PNGs in images\cork\
-		* Results: see CUMROC3_quality_dArea_PO_2019_DEMO.TXT in output\cork\
-	* NHANES NNAL Tobacco Smoke Exposure -- nnalCumRoc3_CALL.sas
-		* Output datasets: description in CUMROC3_quality_dArea_PO_CONTENTS_2019_DEMO.TXT in output\nnal\
-		* Cumulative ROC curves: PNGs in images\nnal\
-		* Results: see CUMROC3_shsX3_URXNALln_NPO_2019_DEMO.TXT in output\nnal\
+	* Cork Quality -- [corkCumRoc3_CALL.sas](https://github.com/intelligo1466/cumRoc3/blob/develop/corkCumRoc3_CALL.sas)
+		* Output datasets: description in [CUMROC3_quality_dArea_PO_CONTENTS_2019_DEMO.TXT in output/cork/](https://github.com/intelligo1466/cumRoc3/blob/develop/output/cork/CUMROC3_quality_dArea_PO_CONTENTS_2019_DEMO.TXT)
+		* Cumulative ROC curves: PNGs in [images/cork/](https://github.com/intelligo1466/cumRoc3/tree/develop/images/cork)
+		* Results: see [CUMROC3_quality_dArea_PO_2019_DEMO.TXT in output/cork/](https://github.com/intelligo1466/cumRoc3/blob/develop/output/cork/CUMROC3_quality_dArea_PO_2019_DEMO.TXT)
+	* NHANES NNAL Tobacco Smoke Exposure -- [nnalCumRoc3_CALL.sas](https://github.com/intelligo1466/cumRoc3/blob/develop/nnalCumRoc3_CALL.sas)
+		* Output datasets: description in [CUMROC3_shsX3_URXNALln_NPO_CONTENTS_2019_DEMO.TXT in output/nnal/](https://github.com/intelligo1466/cumRoc3/blob/develop/output/nnal/CUMROC3_shsX3_URXNALln_NPO_CONTENTS_2019_DEMO.TXT)
+		* Cumulative ROC curves: PNGs in [images/nnal/](https://github.com/intelligo1466/cumRoc3/tree/develop/images/nnal)
+		* Results: see [CUMROC3_shsX3_URXNALln_NPO_2019_DEMO.TXT in output/nnal/](https://github.com/intelligo1466/cumRoc3/blob/develop/output/nnal/CUMROC3_shsX3_URXNALln_NPO_2019_DEMO.TXT)
 
 * Demonstration datasets
-	* Cork Quality -- cork_SI2.CSV in data/cork
-		* Description: see README_SI2.md in data/cork.
-		* Reference: Campilho A.J. [Image Recognition and Automatic Classification of Natural Products] (Portuguese). Available at http://extras.springer.com/2007/978-3-540-71972-4/DATASETS/Cork%20Stoppers/Cork%20Stoppers.xls (February 27, 2017) 1985.
-		* Usage: import CSV to SAS7BDAT by revising demoCork.sas in data\cork\ for your local circumstances then running the program.
-	* NHANES NNAL Tobacco Smoke Exposure -- nhanes_SI3.CSV in data/nnal
-		* Description: see README_SI3.md in data/nnal.
-		* Reference: CDC National Center for Health Statistics. National Health and Nutrition Examination Survey. Available at http://www.cdc.gov/nchs/nhanes.htm (April 22, 2017) 2017.
-		* Usage: import CSV to SAS7BDAT by revising demoNnal.sas in data\nnal\ for your local circumstances then running the program.
+	* Cork Quality -- [cork_SI2.CSV in data/cork](https://github.com/intelligo1466/cumRoc3/blob/develop/data/cork/cork_SI2.csv)
+		* Description: see [README_SI2.md in data/cork](https://github.com/intelligo1466/cumRoc3/blob/develop/data/cork/README_SI2.md).
+		* Reference: Campilho A.J. \[Image Recognition and Automatic Classification of Natural Products\] \(Portuguese\). [Available here.](http://extras.springer.com/2007/978-3-540-71972-4/DATASETS/Cork%20Stoppers/Cork%20Stoppers.xls) 1985.
+		* Usage: import CSV to SAS7BDAT by revising [demoCork.sas in data/cork/](https://github.com/intelligo1466/cumRoc3/blob/develop/data/cork/demoCork.sas) for your local circumstances then running the program.
+	* NHANES NNAL Tobacco Smoke Exposure -- [nhanes_SI3.CSV in data/nnal](https://github.com/intelligo1466/cumRoc3/blob/develop/data/nnal/nhanes_SI3.csv)
+		* Description: see [README_SI3.md in data/nnal](https://github.com/intelligo1466/cumRoc3/blob/develop/data/nnal/README_SI3.md)
+		* Reference: CDC National Center for Health Statistics. National Health and Nutrition Examination Survey. [Available here.](http://www.cdc.gov/nchs/nhanes.htm) 2017.
+		* Usage: import CSV to SAS7BDAT by revising [demoNnal.sas in data/nnal/](https://github.com/intelligo1466/cumRoc3/blob/develop/data/nnal/demoNnal.sas) for your local circumstances then running the program.
 
 ## PREREQUISITES
 * SAS 9.4 and later
 	* Base SAS
 	* SAS/STAT
 	* SAS IML
-* Three-level (ternary) ordinal outcome with levels encoded as: 0, 1, 2
+* Three-level \(ternary\) ordinal outcome with levels encoded as: 0, 1, 2
 * Continuous predictor variable
-* User-specified directory structure for output of tabulated results and cumulative ROC curve images (see macro parameters _dir00, _dirOut, _dirPng)
+* User-specified directory structure for output of tabulated results and cumulative ROC curve images \(see macro parameters \_dir00, \_dirOut, \_dirPng\)
 
 ## ADVISORIES
 * The code has been tested in SAS 9.4 TS1M3 with the two included demonstration datasets and runs with no ERRORs or WARNINGs output to the LOG.
@@ -64,14 +61,14 @@
 * Preferences to facilitate interpretation
 	* Numeric levels of the ternary ordinal outcome should be assigned a SAS format
 	* The continuous predictor should be assigned a SAS label
-* For supporting macro %cr3_1Logit
-	* There may be occasional convergence problems running Stage 1 cumulative logit regression with SAS 9.4 TS1M3 on Windows 10 64-bit.
+* For supporting macro [%cr3_1Logit](https://github.com/intelligo1466/cumRoc3/blob/develop/macros/02_cr3_1Logit_MAC.sas)
+	* Occasionally had convergence problems running Stage 1 cumulative logit regression with SAS 9.4 TS1M3 on Windows 10 64-bit.
 	* To ensure routine convergence, MAXITER= 500 was set for Newton-Raphson optimization with ridging (SAS default).
 	* As this is an arbitrary setting, consider adjusting or eliminating this setting if it does not suit your needs.
-* For supporting macro %cr3_2ROC
-	* In SAS 9.4, OUTROC= in LOGISTIC includes the automatic variable _SOURCE_ and is used by %cr3_2ROC.
-	* In versions before 9.4, this automatic variable is instead called _STEP_ and takes different values than _SOURCE_.
-	* The macro's default is to refer to _SOURCE_, but to permit use in versions before 9.4 I have included commented-out code that refers to _STEP_.
+* For supporting macro [%cr3_2ROC](https://github.com/intelligo1466/cumRoc3/blob/develop/macros/03_cr3_2ROC_MAC.sas)
+	* In SAS 9.4, OUTROC= in LOGISTIC includes the automatic variable \_SOURCE\_ and is used by %cr3_2ROC.
+	* In versions before 9.4, this automatic variable is instead called \_STEP\_ and takes different values than \_SOURCE\_.
+	* The macro's default is to refer to \_SOURCE\_, but to permit use in versions before 9.4 I have included commented-out code that refers to \_STEP\_.
 
 ## USAGE
 ~~~sas
@@ -81,7 +78,7 @@
 	_outCntnts=YES,_outRtf=NO,_debug0=NO) ;
 ~~~
 
-%cumRoc3 exhaustively documented in cumRoc3_MAIN_DOC.md
+%cumRoc3 exhaustively documented in [cumRoc3_MAIN_DOC.md](https://github.com/intelligo1466/cumRoc3/blob/develop/cumRoc3_MAIN_DOC.md)
 
 
 __Note__: macro parameter **_macMode** selects one of three operational modes:
@@ -146,7 +143,7 @@ __Note__: macro parameter **_macMode** selects one of three operational modes:
 	%STR(Output/Cork),
 	%STR(Images/Cork),
 	2019_DEMO,_macMode=1,_macComp=YES,
-	_outCntnts=YES,_outRtf=NO) ;
+	_outCntnts=YES,_outRtf=NO);
 ~~~
 A more routine (and less verbose) call to %cumRoc3.
 * Supporting macros not recompiled (prerequisite: macros compiled at least once before during current SAS session)
@@ -163,7 +160,7 @@ A more routine (and less verbose) call to %cumRoc3.
 
 ### Example Call 2 -- NHANES NNAL Tobacco Smoke Exposure
 ~~~sas
-%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
+%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1), nnal_SI,
 	%STR(C:/rootDir/project),
 	%STR(Output/NNAL),
 	%STR(Images/NNAL),
@@ -172,10 +169,17 @@ A more routine (and less verbose) call to %cumRoc3.
 ~~~
 A less verbose call.
 ~~~sas
-%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1),nnal_SI,
+%cumRoc3(shsX3,URXNALln,Exposure,%STR(BESTD8.1), nnal_SI,
 	%STR(C:/rootDir/project),
 	%STR(Output/NNAL),
 	%STR(Images/NNAL),
 	2019_DEMO,_propOdds=NPO,_macComp=NO,
 	_outCntnts=NO,_outRtf=YES) ;
 ~~~
+
+## Licensing
+Licensed under Apache-2.0 and CC-BY-4.0, which are mutually compatible with GPL-3.0-only under specified conditions. You may obtain a copy of the complete Apache-2.0 and CC-BY-4.0 licenses at [LICENSE](https://github.com/intelligo1466/cumRoc3/blob/develop/LICENSE). For attribution, see suggested citation for %cumRoc3 above.
+
+1. **Apache-2.0** \[Informal and incomplete highlights of terms\]. Under the Apache License, Version 2.0 you may freely use, modify, and redistribute this software for personal or commercial purposes. If you create and redistribute software that includes this software in whole or in part, you must include: a\) a copy of the complete Apache-2.0 license; b\) clear attribution to the developer/author \[me\]; and c\) indication of all significant modifications to this software that clearly identifies the modifications as your work.
+
+1. **CC-BY-4.0** \[Informal and incomplete highlights of terms\]. Under the Creative Commons Attribution International License, Version 4.0 you may share and adapt this software for any purpose, including personal and commercial, as long as you: a\) give appropriate credit to the developer/author \[me\]; b\) provide a link to the complete CC-BY-4.0 license; and c\) and indicate if changes were made to this software.
