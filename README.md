@@ -177,7 +177,7 @@ A less verbose call.
 	_outCntnts=NO,_outRtf=YES) ;
 ~~~
 
-## Licensing
+## LICENSING
 Licensed under Apache-2.0 and CC-BY-4.0, which are mutually compatible with GPL-3.0-only under specified conditions. You may obtain a copy of the complete Apache-2.0 and CC-BY-4.0 licenses at [LICENSE](https://github.com/intelligo1466/cumRoc3/blob/develop/LICENSE). For attribution, see suggested citation for %cumRoc3 above.
 
 1. **Apache-2.0** \[Informal and incomplete highlights of terms\]. Under the Apache License, Version 2.0 you may freely use, modify, and redistribute this software for personal or commercial purposes. If you create and redistribute software that includes this software in whole or in part, you must include: a\) a copy of the complete Apache-2.0 license; b\) clear attribution to the developer/author \[me\]; and c\) indication of all significant modifications to this software that clearly identifies the modifications as your work.
