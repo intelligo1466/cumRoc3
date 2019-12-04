@@ -1,3 +1,7 @@
+## Utility files
+## =======================================
+*.ZIP
+
 ## SAS development programs
 ## =======================================
 nnalCumRoc3_DEV_CALL.sas
@@ -8,26 +12,30 @@ corkCumRoc3_DEV_CALL.sas
 data/nnal/nhanes_SI3.csv
 data/cork/cork_SI2.csv
 
-## SAS data files
+## SAS data SAS7BDAT and format files SAS7BCAT
 ## =======================================
-*.SAS7BDAT
+*.SAS7*
 
 ## Output files
 ## =======================================
 output/
-*.PNG
 *.TXT
 *.RTF
-*.DOCX
+*.DOC*
 *.PDF
-*.XLSX
+*.XLS*
 *.HTM*
 *.MHT
 *.LST
 
-## UltraEdit [Studio]
+## Image files
 ## =======================================
-*.BAK
+images/
+*.JPG
+*.PNG
+*.TIF*
+*.PS
+*.EPS
 
 ## LaTex
 ## =======================================
@@ -47,3 +55,11 @@ output/
 *.FOT
 *.CB
 *.CB2
+
+## BiTex
+## =======================================
+*.BIB
+
+## UltraEdit [Studio]
+## =======================================
+*.BAK
